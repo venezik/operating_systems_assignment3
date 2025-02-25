@@ -14,32 +14,32 @@ int main() {
     srand(time(0));
     cout << "Generated array: ";
     for (int i = 0; i < arrsize; i++) {
-        arr[i] = rand() % 100 + 1; // Random numbers between 1 and 100
+        arr[i] = rand() % 100 + 1; 
         cout << arr[i] << " ";
     }
-    cout << std::endl;
+    cout << endl;
 
     int fd[2]; // Pipe file descriptors
 
     if (pipe(fd) == -1) {
-        cerr << "Pipe creation failed" << std::endl;
+        cerr << "Pipe creation failed" << endl;
         return 1;
     }
 
     int id = fork();
     if (id == -1) {
-        cerr << "Fork failed" << std::endl;
+        cerr << "Fork failed" << endl;
         return 2;
     }
 
     if (id == 0) { // Child process
         start = arrsize / 2;
         end = arrsize;
-        cout << "Child process loop from index " << start << " to " << end - 1 << std::endl;
+        cout << "Child process loop from index " << start << " to " << end - 1 << endl;
     } else { // Parent process
         start = 0;
         end = arrsize / 2;
-        cout << "Parent process loop from index " << start << " to " << end - 1 << std::endl;
+        cout << "Parent process loop from index " << start << " to " << end - 1 << endl;
     }
 
     // Finding minimum value in the assigned half
@@ -50,15 +50,15 @@ int main() {
         }
     }
 
-    std::cout << "Calculated minimum: " << minVal << std::endl;
+    cout << "Calculated minimum: " << minVal << endl;
 
     if (id == 0) { // Child process
-        cout << "Child's process ID: " << getpid() << std::endl;
+        cout << "Child's process ID: " << getpid() << endl;
         write(fd[1], &minVal, sizeof(minVal));
         close(fd[1]);
         exit(0); // Ensure child exits
     } else { // Parent process
-        cout << "Parent's process ID: " << getpid() << std::endl;
+        cout << "Parent's process ID: " << getpid() << endl;
         close(fd[1]); // Close unused write end
         int childMin;
         read(fd[0], &childMin, sizeof(childMin));
@@ -66,9 +66,9 @@ int main() {
         wait(NULL); // Wait for child to finish
 
         int overallMin = std::min(minVal, childMin);
-        cout << "Parent Minimum: " << minVal << std::endl;
-        cout << "Child Minimum: " << childMin << std::endl;
-        cout << "Overall Minimum in the Array: " << overallMin << std::endl;
+        cout << "Parent Minimum: " << minVal << endl;
+        cout << "Child Minimum: " << childMin << endl;
+        cout << "Overall Minimum in the Array: " << overallMin << endl;
     }
 
     return 0;
