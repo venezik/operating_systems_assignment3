@@ -1,0 +1,9 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": []
+    /usr/bin/clang++ -std=gnu++14 -stdlib=libc++ -lc++ -fcolor-diagnostics -fansi-escape-codes -g /Users/iaroslav/Desktop/GitHub/operating_systems/main.cpp -o /Users/iaroslav/Desktop/GitHub/operating_systems/main
+
+}
