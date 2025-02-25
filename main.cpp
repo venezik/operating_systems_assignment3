@@ -65,7 +65,7 @@ int main() {
         close(fd[0]); // Close read end after use
         wait(NULL); // Wait for child to finish
 
-        int overallMin = std::min(minVal, childMin);
+        int overallMin = min(minVal, childMin);
         cout << "Parent Minimum: " << minVal << endl;
         cout << "Child Minimum: " << childMin << endl;
         cout << "Overall Minimum in the Array: " << overallMin << endl;
